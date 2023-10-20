@@ -1,12 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
 
 
-});
+chrome.runtime.onMessage.addListener(gotMessage);
 
+function gotMessage(message, sender, sendResponse) {
+    console.log('message received by content-script: ', message);
+    console.log('sender received by content-script: ', sender);
+    sendResponse({response: 'response being sent from content-script'})
+}
 
-document.addEventListener('click', () => {
-
-});
 
 
 
@@ -27,3 +28,7 @@ document.addEventListener('click', () => {
 
 //we also need the ability to turn the functionality off when the chrome extension button is pressed again (toggle)
 
+
+
+//when message received, inject some code into DOM to turn on event listener for 
+//web page
