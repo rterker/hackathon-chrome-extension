@@ -1,0 +1,8 @@
+{
+    "manifest_version": 3,
+    "name": "Hackathon Extension",
+    "description": "Hackathon Extension",
+    "version": "1.0",
+    "action": {
+    }
+}
