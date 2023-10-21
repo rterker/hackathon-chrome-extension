@@ -49,14 +49,14 @@
 // });
 //when button is clicked, send message to content script that button has been clicked
 
+// chrome.storage.local.set({ 'onOrOff': 1 }).then(() => {
+//     console.log("Value is set");
+//   });
 
 document.addEventListener('DOMContentLoaded', () => {
     const switcher = document.querySelector('.switch');
     const queryInfo = {active: true, currentWindow: true};
     const msg = {};
-    chrome.storage.local.set({ 'onOrOff': 1 }).then(() => {
-        console.log("Value is set");
-      });
     switcher.addEventListener('change', async () => {
         const tabs = await chrome.tabs.query(queryInfo);
         const tabID = tabs[0].id;
@@ -71,7 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         chrome.storage.local.get(["onOrOff"]).then(async (result) => {
             // console.log('result from get in popup before sending to content: ', result);
-            msg.onOrOff = result.onOrOff;
+            if (!msg.onOrOff) {
+                msg.onOrOff = 1;
+            } else {
+                msg.onOrOff = result.onOrOff;
+            }
+            
             // console.log(msg);
             const response = await chrome.tabs.sendMessage(tabID, msg, responseFunction);
           });
