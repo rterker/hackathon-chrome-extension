@@ -53,16 +53,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     const switcher = document.querySelector('.switch');
     const queryInfo = {active: true, currentWindow: true};
+    const msg = {onOrOff: 1};
     switcher.addEventListener('change', async () => {
         const tabs = await chrome.tabs.query(queryInfo);
         const tabID = tabs[0].id;
-        const msg = {message: 'activate', id: tabID};
+        msg.id = tabID;
         function responseFunction(response) {
-            console.log('response: ', response);
+            msg.onOrOff = response;
+            //not doing anything with return currently
+            return response; 
         }
-        const response = await chrome.runtime.sendMessage(msg, responseFunction);
-        
+        const response = await chrome.tabs.sendMessage(tabID, msg, responseFunction);
         })
     });
 
+
+//retrieve response from service worker
+//send response to service worker
 

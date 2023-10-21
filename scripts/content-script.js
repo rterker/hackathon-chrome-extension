@@ -1,14 +1,14 @@
 
-function gotMessageFromWindow(event) {
-    if (event.data.type == 'FROM_PAGE') {
-        console.log('MESSAGE RECEIVED')
-        const soundURL = chrome.runtime.getURL('sounds/fart6.mp3');
-        const sound = new Audio(soundURL);
-        sound.play();
-    }
-}
+// function gotMessageFromWindow(event) {
+//     if (event.data.type == 'FROM_PAGE') {
+//         console.log('MESSAGE RECEIVED')
+//         const soundURL = chrome.runtime.getURL('sounds/fart6.mp3');
+//         const sound = new Audio(soundURL);
+//         sound.play();
+//     }
+// }
 
-window.addEventListener('message', gotMessageFromWindow);
+// window.addEventListener('message', gotMessageFromWindow);
 
 // const soundFiles = [
 //     'sounds/fart6.mp3',

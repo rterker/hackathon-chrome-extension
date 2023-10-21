@@ -2,16 +2,13 @@
 
 
 
-chrome.runtime.onMessage.addListener(gotMessage);
+// chrome.runtime.onMessage.addListener(gotMessage);
 
-async function gotMessage(message, sender, sendResponse) {
-    if (message.message === 'activate') {
-        await chrome.scripting.executeScript({
-            target: { tabId: message.id },
-            files: ["scripts/content.js"]
-          });
-    }
-    // console.log('message received by content-script: ', message);
-    // console.log('sender received by content-script: ', sender);
-    sendResponse({response: 'executed'})
-}
+// const currentState = 1;
+
+// async function gotMessage(message, sender, sendResponse) {
+//     if (message.message === 'activate') {
+//         //update current state to be message value received
+//     sendResponse({response: 'service worker message received'})
+//     }
+// }
