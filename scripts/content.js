@@ -1,6 +1,7 @@
 chrome.runtime.onMessage.addListener(messageReceived);
 
 function messageReceived(message, sender, sendResponse) {
+  console.log('message received from content.js: ', message);
   if (message.onOrOff === 1) {
     // alert('ON: Event Listener Added')
     document.addEventListener('keydown', activateOnKeyStroke);
@@ -9,7 +10,7 @@ function messageReceived(message, sender, sendResponse) {
     document.removeEventListener('keydown', activateOnKeyStroke);
     // alert('OFF: Event Listener Removed');
   }
-  sendResponse(message.onOrOff *= -1);
+  sendResponse(message.onOrOff * -1);
 }
 
 function activateOnKeyStroke(event) {

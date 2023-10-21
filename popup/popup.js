@@ -53,21 +53,40 @@
 document.addEventListener('DOMContentLoaded', () => {
     const switcher = document.querySelector('.switch');
     const queryInfo = {active: true, currentWindow: true};
-    const msg = {onOrOff: 1};
+    const msg = {};
+    chrome.storage.local.set({ 'onOrOff': 1 }).then(() => {
+        console.log("Value is set");
+      });
     switcher.addEventListener('change', async () => {
         const tabs = await chrome.tabs.query(queryInfo);
         const tabID = tabs[0].id;
         msg.id = tabID;
         function responseFunction(response) {
-            msg.onOrOff = response;
+            // console.log('response before set in popup: ', response)
+            chrome.storage.local.set({ 'onOrOff': response }).then(() => {
+                // console.log('response after set in popup: ', response);
+              });
             //not doing anything with return currently
             return response; 
         }
-        const response = await chrome.tabs.sendMessage(tabID, msg, responseFunction);
+        chrome.storage.local.get(["onOrOff"]).then(async (result) => {
+            // console.log('result from get in popup before sending to content: ', result);
+            msg.onOrOff = result.onOrOff;
+            // console.log(msg);
+            const response = await chrome.tabs.sendMessage(tabID, msg, responseFunction);
+          });
         })
     });
 
 
-//retrieve response from service worker
-//send response to service worker
+//retrieve response from storage
+//send response to content script
+//send response received from content script to storage
 
+// chrome.storage.local.set({ key: value }).then(() => {
+//     console.log("Value is set");
+//   });
+  
+//   chrome.storage.local.get(["key"]).then((result) => {
+//     console.log("Value currently is " + result.key);
+//   });
