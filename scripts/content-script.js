@@ -1,12 +1,12 @@
 
 
-chrome.runtime.onMessage.addListener(gotMessage);
+// chrome.runtime.onMessage.addListener(gotMessage);
 
-function gotMessage(message, sender, sendResponse) {
-    console.log('message received by content-script: ', message);
-    console.log('sender received by content-script: ', sender);
-    sendResponse({response: 'response being sent from content-script'})
-}
+// function gotMessage(message, sender, sendResponse) {
+//     console.log('message received by content-script: ', message);
+//     console.log('sender received by content-script: ', sender);
+//     sendResponse({response: 'response being sent from content-script'})
+// }
 
 
 
