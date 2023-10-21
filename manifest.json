@@ -1,10 +1,14 @@
 {
-    "manifest_version": 3,
-    "name": "Hackathon Extension",
-    "description": "Hackathon Extension",
-    "version": "1.0",
-    "action": {
-        "default_popup": "popup/popup.html",
-        "default_icon": "icons/triangle.png"
-    }
+  "manifest_version": 3,
+  "name": "Hackathon Extension",
+  "description": "Hackathon Extension",
+  "version": "1.0",
+  "permissions": ["activeTab"],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": "icons/triangle.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
 }
