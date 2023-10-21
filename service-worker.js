@@ -8,7 +8,7 @@ async function gotMessage(message, sender, sendResponse) {
     if (message.message === 'activate') {
         await chrome.scripting.executeScript({
             target: { tabId: message.id },
-            files: ["scripts/content-script.js"]
+            files: ["scripts/content.js"]
           });
     }
     // console.log('message received by content-script: ', message);
