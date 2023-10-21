@@ -47,17 +47,17 @@ function activateOnKeyStroke(event) {
 // console.log(audio);
 // audio.play();
 
-// const audioElement = document.createElement('audio');
-// audioElement.setAttribute('id', 'audio-element')
-// const soundURL = chrome.runtime.getURL('sounds/fart6.mp3');
-// // const sound = new Audio(soundURL);
-// // sound.play()
-// audioElement.setAttribute('src', soundURL)
-// audioElement.autoplay = true;
-// const aTag = document.createElement('a');
-// aTag.setAttribute('href', soundURL);
-// audioElement.appendChild(aTag);
-// document.head.appendChild(audioElement);
+const audioElement = document.createElement('audio');
+audioElement.setAttribute('id', 'audio-element')
+const soundURL = chrome.runtime.getURL('sounds/fart6.mp3');
+// const sound = new Audio(soundURL);
+// sound.play()
+audioElement.setAttribute('src', soundURL)
+audioElement.autoplay = true;
+const aTag = document.createElement('a');
+aTag.setAttribute('href', soundURL);
+audioElement.appendChild(aTag);
+document.head.appendChild(audioElement);
 // audioElement.play();
 
 
