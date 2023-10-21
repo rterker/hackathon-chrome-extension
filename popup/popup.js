@@ -51,17 +51,16 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const button = document.querySelector('#button');
+    const switcher = document.querySelector('.switch');
     const queryInfo = {active: true, currentWindow: true};
-    button.addEventListener('click', async () => {
+    switcher.addEventListener('change', async () => {
         const tabs = await chrome.tabs.query(queryInfo);
-        console.log(tabs)
         const tabID = tabs[0].id;
-        const msg = {message: 'button was clicked!'};
+        const msg = {message: 'activate', id: tabID};
         function responseFunction(response) {
             console.log('response: ', response);
         }
-        const response = await chrome.tabs.sendMessage(tabID, msg, responseFunction);
+        const response = await chrome.runtime.sendMessage(msg, responseFunction);
         
         })
     });
